@@ -1,4 +1,5 @@
 import React from "react";
+import RatingStar from "./RatingStar";
 
 function Card({ ...item }) {
   return (
@@ -23,6 +24,7 @@ function Card({ ...item }) {
             + Add to Cart
           </button>
         </div>
+        <RatingStar rating={item.rating} />
       </div>
     </div>
   );

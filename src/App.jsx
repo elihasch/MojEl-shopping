@@ -28,7 +28,8 @@ function App() {
     <>
       <Layout>
         <SearchProduct search={search} setSearch={setSearch} />
-        <div className="flex flex-wrap gap-6 mt-5">
+
+        <div className="flex flex-wrap gap-6 mt-5 ">
           {searchedProducts.map((item) => (
             <Card key={item.id} {...item} />
           ))}
