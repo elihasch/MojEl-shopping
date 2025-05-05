@@ -10,7 +10,7 @@ function RatingStar({ rating }) {
     for (let i = 1; i <= 5; i++) {
       stars.push(
         <img
-          className="w-4 "
+          className="w-4"
           key={i}
           src={i <= rateRound ? goldStar : grayStar}
           alt="star"
@@ -20,7 +20,7 @@ function RatingStar({ rating }) {
     return stars;
   };
 
-  return <div className="flex my-2">{renderStar()}</div>;
+  return <div className="flex">{renderStar()}</div>;
 }
 
 export default RatingStar;
