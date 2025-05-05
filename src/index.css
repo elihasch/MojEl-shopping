@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+:root {
+  box-sizing: border-box;
+}
+/* body {
+  max-width: 1400px;
+  min-height: 100vh;
+  margin: auto;
+} */
+
+a {
+  text-decoration: inherit;
+  color: inherit;
+}
+
+button,
+input,
+select {
+  font-family: inherit;
+}
