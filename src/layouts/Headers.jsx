@@ -1,28 +1,22 @@
+import { Link } from "react-router-dom";
 import Logo from "../assets/Screenshot.png";
 
 function Headers() {
   return (
     <header className="border-b border-gray-300 py-4 mb-5">
-      <nav className="flex justify-between items-center">
+      <nav className="flex justify-between items-center container mx-auto px-4">
         <div className="flex gap-2 items-center">
           <img
-            className=" h-full size-18 rounded-full bg-radial from-pink-400 from-40% to-fuchsia-700"
+            className="w-20 h-14 rounded-full object-cover"
             src={Logo}
             alt="us"
           />
           <h1>MojEl Store</h1>
         </div>
-        <ul className="flex gap-4 ">
-          <li>
-            <a href="#">Home</a>
-          </li>
-          <li>
-            <a href="#">Dashboard</a>
-          </li>
-          <li>
-            <a href="#">Login</a>
-          </li>
-        </ul>
+        <div className="flex gap-4">
+          <Link to="/">Home</Link>
+          <Link to="/loging">Loging</Link>
+        </div>
       </nav>
     </header>
   );

@@ -1,11 +1,21 @@
 import React from "react";
 import RatingStar from "./RatingStar";
+import { useNavigate } from "react-router-dom";
 
 function Card({ ...item }) {
+  const navigate = useNavigate();
+  const clickHandler = () => {
+    navigate(`${item.id}`);
+  };
+
   return (
-    <div className="flex flex-col gap-3 items-center w-[300px] border border-gray-300 rounded-2xl p-5">
+    <div
+      className="flex flex-col gap-3 items-center w-[300px] border border-gray-300 rounded-2xl p-5"
+      onClick={clickHandler}
+    >
       <div className="w-full flex items-center justify-center">
         <img
+          onClick={(e) => e.target.title}
           className="h-[200px] object-contain "
           src={item.image}
           alt={item.title}
