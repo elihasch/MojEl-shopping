@@ -4,7 +4,7 @@ import grayStar from "../assets/starImage/grayStar.svg";
 
 function RatingStar({ rating }) {
   const renderStar = () => {
-    const rateRound = Math.round(rating.rate);
+    const rateRound = Math.round(rating?.rate);
 
     const stars = [];
     for (let i = 1; i <= 5; i++) {

@@ -1,8 +1,8 @@
-// export const textCutter = (text) => {
-//   if (!text) return "";
+export const textCutter = (text) => {
+  if (!text) return "";
 
-//   if (text.length > 20) {
-//     const newText = text.split(" ").slice(0, 15).join(" ");
-//     return newText;
-//   }
-// };
+  if (text.length > 5) {
+    const newText = text.split(" ").slice(0, 5).join(" ");
+    return newText;
+  }
+};

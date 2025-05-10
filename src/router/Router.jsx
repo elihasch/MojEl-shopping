@@ -12,7 +12,7 @@ function Router() {
     <Routes>
       <Route index element={<Navigate to="products" replace />} />
       <Route path="products" element={<ProductsPage products={products} isFetching={isFetching} />} />
-      <Route path="products/:id" element={<ProductDetailPage />} />
+      <Route path="products/:id" element={<ProductDetailPage products={products} />} />
       <Route path="*" element={<PageNotFind/>} />
     </Routes>
   );

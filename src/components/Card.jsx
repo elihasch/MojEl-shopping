@@ -1,4 +1,3 @@
-import React from "react";
 import RatingStar from "./RatingStar";
 import { useNavigate } from "react-router-dom";
 
