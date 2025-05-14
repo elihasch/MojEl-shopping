@@ -2,22 +2,9 @@ import React from "react";
 
 function Loader() {
   return (
-    <>
-      {/* <style>
-        {`
-          @keyframes rotation {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-          }
-          .rotate-animation {
-            animation: rotation 1s linear infinite;
-          }
-        `}
-      </style>
-      <div className="text-center mt-[150px]">
-        <span className="w-3 h-3 border-4 border-amber-300 border-b-amber-700 rounded-[%50] inline-block box-border rotation-animation"></span>
-      </div> */}
-    </>
+      <div className="flex justify-center items-center h-30 m-auto">
+        <div className="w-10 h-10 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+      </div>
   );
 }
 

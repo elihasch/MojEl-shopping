@@ -1,20 +1,31 @@
+import { useState } from "react";
+import Loader from "./modules/Loader";
 import RatingStar from "./RatingStar";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addItem } from "../features/shopingSlice";
 
 function Card({ ...item }) {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
+
   const clickHandler = () => {
     navigate(`${item.id}`);
   };
+  
+  const addedHandler = () => {
+    setLoading(true);
+    dispatch(addItem(item));
+  };
 
   return (
-    <div
-      className="flex flex-col gap-3 items-center w-[300px] border border-gray-300 rounded-2xl p-5"
-      onClick={clickHandler}
-    >
-      <div className="w-full flex items-center justify-center">
+    <div className="flex flex-col gap-3 items-center w-[300px] border border-gray-300 rounded-2xl p-5">
+      <div
+        onClick={clickHandler}
+        className="w-full flex items-center justify-center"
+      >
         <img
-          onClick={(e) => e.target.title}
           className="h-[200px] object-contain "
           src={item.image}
           alt={item.title}
@@ -30,8 +41,12 @@ function Card({ ...item }) {
         <RatingStar rating={item.rating} />
         <div className="mt-auto flex justify-between items-center">
           <span className="font-bold text-[#9B7D66]">$ {item.price}</span>
-          <button className="bg-[#9B7D66] text-white px-3 py-1 rounded-md text-sm">
-            + Add to Cart
+          <button
+            onClick={addedHandler}
+            disabled={loading}
+            className="bg-[#9B7D66] w-[150px] text-white px-3 py-1 rounded-md text-sm"
+          >
+            {loading ? "Loading..." : "+ Add to Cart"}
           </button>
         </div>
       </div>
