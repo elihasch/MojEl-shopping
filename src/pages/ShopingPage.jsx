@@ -1,11 +1,12 @@
-import ShopingState from "../components/ShopingState"
+import ShoppingState from "../components/ShopingState"
+
 
 
 
 function ShopingPage() {
 
   return (
-    <><ShopingState/></>
+    <><ShoppingState/></>
   )
 }
 

@@ -1,13 +1,13 @@
 import { useParams } from "react-router-dom";
 import RatingStar from "../components/RatingStar";
-import { textCutter } from "../helpers/funk";
 import { useDispatch } from "react-redux";
 import { addItem } from "../features/shopingSlice";
+import { truncateText } from "../helpers/funk";
 
 function ProductDetailPage({ products }) {
   const dispatch = useDispatch();
   const { id } = useParams();
-  console.log(id);
+
   const findedProduct = products?.find(
     (product) => product.id.toString() === id
   );
@@ -24,7 +24,7 @@ function ProductDetailPage({ products }) {
 
       <div className="flex flex-col h-[390px] w-1/2 gap-3">
         <h1 className="text-2xl font-bold line-clamp-1">
-          {textCutter(findedProduct?.title)}
+          {truncateText(findedProduct?.title,3)}
         </h1>
         <div className="flex gap-4 ">
           <span className="text-sm bg-gray-300 rounded-full uppercase px-3 py-1">
@@ -39,7 +39,7 @@ function ProductDetailPage({ products }) {
         <p className="mt-4 line-clamp-5">{findedProduct?.description}</p>
         <button
           onClick={() => dispatch(addItem(findedProduct))}
-          className="mt-6 w-fit px-4 py-2 bg-[#9B7D66] text-white rounded-xl"
+          className="mt-6 w-fit px-4 py-2 bg-[#9B7D66] text-white rounded-xl "
         >
           + Add to card
         </button>

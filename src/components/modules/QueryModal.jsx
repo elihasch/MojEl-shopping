@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { removeItem } from "../../features/shopingSlice";
 
 function QueryModal({ setOpenModal, item }) {

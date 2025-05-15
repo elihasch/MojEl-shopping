@@ -13,10 +13,14 @@ function Card({ ...item }) {
   const clickHandler = () => {
     navigate(`${item.id}`);
   };
-  
+
   const addedHandler = () => {
     setLoading(true);
     dispatch(addItem(item));
+
+    setInterval(() => {
+      setLoading(false);
+    }, 500);
   };
 
   return (
