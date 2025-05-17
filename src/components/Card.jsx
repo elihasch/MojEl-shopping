@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Loader from "./modules/Loader";
 import RatingStar from "./RatingStar";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";

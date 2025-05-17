@@ -17,7 +17,7 @@ function Router() {
       />
       <Route
         path="products/:id"
-        element={<ProductDetailPage products={products} />}
+        element={<ProductDetailPage />}
       />
       <Route path="shoping" element={<ShopingPage />} />
       <Route path="*" element={<PageNotFind />} />
