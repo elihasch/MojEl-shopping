@@ -2,13 +2,15 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import QueryModal from "./modules/QueryModal";
 import toast from "react-hot-toast";
-import { decreaseQuantity, increaseQuantity } from "../features/shopingSlice";
+import { decreaseQuantity } from "../features/shopingSlice";
+import CartItem from "./CartItem";
 
 function ShoppingState() {
   const [openModal, setOpenModal] = useState(false);
   const [selectedItem, setSelectedItem] = useState([]);
 
   const cartItems = useSelector((state) => state.counter.items);
+  console.log("cartItems", cartItems);
   const dispatch = useDispatch();
 
   const total = cartItems.reduce(
@@ -32,61 +34,76 @@ function ShoppingState() {
 
   return (
     <div className="flex justify-between">
-      {cartItems.length > 0 && (
-        <div className="border border-gray-300 ">
-          {cartItems.map((item) => (
-            <div
-              className=" grid grid-cols-2 gap-4 w-[400px] mx-auto p-2 "
-              key={item.id}
-            >
-              <div className="">
-                <img
-                  className="object-full p-5"
-                  src={item.image}
-                  alt={item.title}
-                />
-              </div>
-              <div>
-                <h2 className="text-lg font-semibold mb-1 line-clamp-1 my-6">
-                  {item.title}
-                </h2>
-                <span className="font-bold text-gray-600">${item.price}</span>
-                <p className="text-sm text-gray-700 mb-4 line-clamp-2">
-                  {item.description}
-                </p>
-                <div className="flex items-center justify-between gap-2">
-                  <span className="font-bold text-[#9B7D66]">
-                    ${item.price * item.quantity}
-                  </span>
-                  <div className="flex gap-5 items-center border-1 px-2 border-[#d3b7a1]">
-                    <button
-                      className="text-4xl  text-[#9B7D66] "
-                      onClick={() => handleDecrease(item)}
-                    >
-                      -
-                    </button>
-                    <span className="font-bold">{item.quantity}</span>
-                    <button
-                      className="text-2xl font-bold text-[#9B7D66] "
-                      onClick={() => dispatch(increaseQuantity(item.id))}
-                    >
-                      +
-                    </button>
-                  </div>
-                </div>
-              </div>
+      <div className="flex flex-col w-3/4">
+        <div className="flex justify-between pb-8 border-b border-b-gray-300">
+          <p className="text-xl font-medium ">Shopping Cart</p>
+          <p className="text-xl font-medium pr-[200px]">Items</p>
+        </div>
+        <div>
+          <div className="flex gap-48 items-center justify-between p-5">
+            <span className="w-2/5 text-neutral-400 uppercase font-bold">
+              Product Details
+            </span>
+            <div className="w-3/5 flex items-center justify-between text-neutral-400 uppercase font-bold">
+              <span>Quantity</span>
+              <span>Price</span>
+              <span>Total</span>
             </div>
+          </div>
+          {cartItems.map((item) => (
+            <CartItem
+              key={item.id}
+              item={item}
+              handleDecrease={handleDecrease}
+            />
           ))}
         </div>
-      )}
-      <p className="mt-4 font-bold text-black">Total: ${total.toFixed(2)}</p>
-      {openModal && selectedItem && (
-        <QueryModal
-          setOpenModal={setOpenModal}
-          item={selectedItem}
-          openModal={openModal}
-        />
-      )}
+      </div>
+
+      <div className=" flex flex-col items-center w-1/4 gap-10  ml-7">
+        <p className=" text-xl font-medium pb-8 w-full border-b border-b-gray-300 text-center">
+          Order Summary
+        </p>
+        <div className="flex flex-col gap-6 w-fit">
+          <div className="flex justify-between  ">
+            <p>ITEMS {cartItems.length}</p>
+            <p> $ {total.toFixed(2)}</p>
+          </div>
+          <p>SHIPPING</p>
+          <select class="border border-gray-300 rounded-md p-3">
+            <option value="">Standard Delivery - €5.00</option>
+            <option value="1">DPL - €6.00</option>
+            <option value="2">Hermes - €8.00</option>
+          </select>
+          <p>PROMO CODE</p>
+          <input
+            className="border border-gray-300 p-3 rounded-ms"
+            type="number"
+            name="code"
+            id="code"
+            placeholder="Enter your code"
+          />
+          <button className="bg-red-500 text-white p-3 rounded-ms">
+            APPLY
+          </button>
+
+          <div className="border-t border-gray-300 mt-8 flex flex-col gap-6">
+            <p className="mt-4 font-bold text-gray-600">
+              TOTAL COST: <span> ${total.toFixed(2)}</span>
+            </p>
+            <button className="text-l  font-bold bg-blue-600 text-white p-3 rounded-ms">
+              CHECKOUT
+            </button>
+          </div>
+          {openModal && selectedItem && (
+            <QueryModal
+              setOpenModal={setOpenModal}
+              item={selectedItem}
+              openModal={openModal}
+            />
+          )}
+        </div>
+      </div>
     </div>
   );
 }

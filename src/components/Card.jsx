@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Loader from "./modules/Loader";
 import RatingStar from "./RatingStar";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -13,10 +12,14 @@ function Card({ ...item }) {
   const clickHandler = () => {
     navigate(`${item.id}`);
   };
-  
+
   const addedHandler = () => {
     setLoading(true);
     dispatch(addItem(item));
+
+    setInterval(() => {
+      setLoading(false);
+    }, 500);
   };
 
   return (

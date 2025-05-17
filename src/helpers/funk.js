@@ -1,8 +1,11 @@
-export const textCutter = (text) => {
+const truncateText = (text, wordCount) => {
   if (!text) return "";
 
-  if (text.length > 5) {
-    const newText = text.split(" ").slice(0, 5).join(" ");
-    return newText;
+  const words = text.split(" ");
+  if (words.length > wordCount) {
+    return words.slice(0, wordCount).join(" ") + "...";
   }
+
+  return text;
 };
+export { truncateText };
